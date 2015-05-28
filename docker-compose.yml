@@ -1,0 +1,29 @@
+elasticsearch:
+  image: elasticsearch
+  ports:
+      - "9200:9200"
+  #volumes:
+      #- volumes/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  # The config file
+      #- volumes/elasticsearch/data:/usr/share/elasticsearch/data        # The data directory
+      #- volumes/elasticsearch/plugins:/usr/share/elasticsearch/plugins  # The plugin directory
+  #command: elasticsearch -Des.node.name="Node1" -Des.config=/data/elasticsearch.yml
+  command: elasticsearch -Des.node.name="Node1"
+
+logstash:
+  image: logstash
+  links:
+    - elasticsearch
+  volumes:
+    - .:/config-dir
+  ports:
+    - "5000:5000"
+  volumes:
+    - .:/config-dir  # The config directory
+  command: logstash -f /config-dir/logstash.conf
+
+kibana:
+  build: ./kibana
+  links:
+    - elasticsearch
+  ports:
+    - "8080:8080"
