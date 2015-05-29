@@ -65,8 +65,3 @@ chmod a+x docker-compose
 sudo mv docker-compose /usr/local/bin
 
 
-# install Docker Compose (was: Fig)
-# @see http://docs.docker.com/compose/install/
-curl -o docker-compose -L https://github.com/docker/compose/releases/download/$COMPOSE_VERSION/docker-compose-`uname -s`-`uname -m`
-chmod a+x docker-compose
-sudo mv docker-compose /usr/local/bin
