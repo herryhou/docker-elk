@@ -1,5 +1,5 @@
 elasticsearch:
-  image: elasticsearch
+  build: ./elasticsearch
   ports:
       - "9200:9200"
   #volumes:
@@ -8,6 +8,28 @@ elasticsearch:
       #- volumes/elasticsearch/plugins:/usr/share/elasticsearch/plugins  # The plugin directory
   #command: elasticsearch -Des.node.name="Node1" -Des.config=/data/elasticsearch.yml
   command: elasticsearch -Des.node.name="Node1"
+
+elasticsearch2:
+  build: ./elasticsearch
+  ports:
+      - "9201:9200"
+  #volumes:
+      #- volumes/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  # The config file
+      #- volumes/elasticsearch/data:/usr/share/elasticsearch/data        # The data directory
+      #- volumes/elasticsearch/plugins:/usr/share/elasticsearch/plugins  # The plugin directory
+  #command: elasticsearch -Des.node.name="Node1" -Des.config=/data/elasticsearch.yml
+  command: elasticsearch -Des.node.name="Node2"
+
+elasticsearch3:
+  build: ./elasticsearch
+  ports:
+      - "9202:9200"
+  #volumes:
+      #- volumes/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  # The config file
+      #- volumes/elasticsearch/data:/usr/share/elasticsearch/data        # The data directory
+      #- volumes/elasticsearch/plugins:/usr/share/elasticsearch/plugins  # The plugin directory
+  #command: elasticsearch -Des.node.name="Node1" -Des.config=/data/elasticsearch.yml
+  command: elasticsearch -Des.node.name="Node3"
 
 logstash:
   image: logstash

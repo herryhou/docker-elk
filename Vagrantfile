@@ -15,6 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #ip = "base_ip.#{n+100}"
       elk.vm.network :private_network, ip: "10.1.2.#{n+100}"
       elk.vm.network "forwarded_port", guest: 8080, host: n+8080
+      elk.vm.network "forwarded_port", guest: 9200, host: n+9200
       elk_index = n+1
       elk.vm.hostname = "elk-#{elk_index}"
       elk.ssh.password = "vagrant"
