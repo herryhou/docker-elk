@@ -2,6 +2,9 @@ elasticsearch:
   build: ./elasticsearch
   ports:
       - "9200:9200"
+  mem_limit: 512m
+  cpu_shares: 256 #1024=100%
+
   #volumes:
       #- volumes/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  # The config file
       #- volumes/elasticsearch/data:/usr/share/elasticsearch/data        # The data directory
@@ -13,6 +16,9 @@ elasticsearch2:
   build: ./elasticsearch
   ports:
       - "9201:9200"
+  mem_limit: 512m
+  cpu_shares: 256 #1024=100%
+
   #volumes:
       #- volumes/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  # The config file
       #- volumes/elasticsearch/data:/usr/share/elasticsearch/data        # The data directory
@@ -24,6 +30,9 @@ elasticsearch3:
   build: ./elasticsearch
   ports:
       - "9202:9200"
+  mem_limit: 512m
+  cpu_shares: 256 #1024=100%
+
   #volumes:
       #- volumes/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  # The config file
       #- volumes/elasticsearch/data:/usr/share/elasticsearch/data        # The data directory
@@ -33,6 +42,9 @@ elasticsearch3:
 
 logstash:
   image: logstash
+  mem_limit: 256m
+  cpu_shares: 128 #1024=100%
+
   links:
     - elasticsearch
   volumes:
@@ -45,7 +57,19 @@ logstash:
 
 kibana:
   build: ./kibana
+  mem_limit: 128m
+  cpu_shares: 128 #1024=100%
+
   links:
     - elasticsearch
   ports:
     - "8080:8080"
+cadvisor:
+  image: google/cadvisor:latest
+  volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+  ports:
+    - "8070:8080"
