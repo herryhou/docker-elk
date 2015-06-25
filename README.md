@@ -7,7 +7,7 @@ cd /vagrant
 docker-compse up -d
 docker-compose ps```
 
-Now you can open browser at http://localhost:8080
+Then open browser at http://localhost:8080
 
 ## 2 plugins are installed.
 ###head plugin
