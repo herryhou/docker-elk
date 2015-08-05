@@ -2,6 +2,7 @@ elasticsearch:
   build: ./elasticsearch
   ports:
       - "9200:9200"
+      - "9300:9300"
   mem_limit: 1024m
   cpu_shares: 256 #1024=100%
 
