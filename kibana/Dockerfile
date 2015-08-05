@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER HerryHou <HerryHou at gmail dot com>
 
 # To update, check http://www.elasticsearch.org/overview/kibana/installation/
-ENV KIBANA_VERSION 4.0.2
+ENV KIBANA_VERSION 4.1.1
 
 ADD https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x64.tar.gz /kibana.tar.gz
 

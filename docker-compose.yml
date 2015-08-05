@@ -2,7 +2,7 @@ elasticsearch:
   build: ./elasticsearch
   ports:
       - "9200:9200"
-  mem_limit: 512m
+  mem_limit: 1024m
   cpu_shares: 256 #1024=100%
 
   #volumes:
@@ -12,20 +12,20 @@ elasticsearch:
   #command: elasticsearch -Des.node.name="Node1" -Des.config=/data/elasticsearch.yml
   command: elasticsearch -Des.node.name="Node1"
 
-logstash:
-  image: logstash
-  mem_limit: 256m
-  cpu_shares: 128 #1024=100%
-
-  links:
-    - elasticsearch
-  volumes:
-    - .:/config-dir
-  ports:
-    - "5000:5000"
-  volumes:
-    - .:/config-dir  # The config directory
-  command: logstash -f /config-dir/logstash.conf
+#logstash:
+#  image: logstash
+#  mem_limit: 256m
+#  cpu_shares: 128 #1024=100%
+#
+#  links:
+#    - elasticsearch
+#  volumes:
+#    - .:/config-dir
+#  ports:
+#    - "5000:5000"
+#  volumes:
+#    - .:/config-dir  # The config directory
+#  command: logstash -f /config-dir/logstash.conf
 
 kibana:
   build: ./kibana
@@ -36,12 +36,18 @@ kibana:
     - elasticsearch
   ports:
     - "8080:8080"
-cadvisor:
-  image: google/cadvisor:latest
-  volumes:
-    - /:/rootfs:ro
-    - /var/run:/var/run:rw
-    - /sys:/sys:ro
-    - /var/lib/docker/:/var/lib/docker:ro
-  ports:
-    - "8070:8080"
+
+#cadvisor:
+#  image: google/cadvisor:latest
+#  volumes:
+#    - /:/rootfs:ro
+#    - /var/run:/var/run:rw
+#    - /sys:/sys:ro
+#    - /var/lib/docker/:/var/lib/docker:ro
+#  ports:
+#    - "8070:8080"
+#
+#haproxy:
+#  build: ./haproxy
+#  ports:
+#    -80:80
