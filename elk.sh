@@ -18,6 +18,6 @@ docker run -d \
 docker run -d \
  --name elk_kibana1 \
  -p 8080:8080 \
- --link elk_elasticsearch1 \
+ --link elk_elasticsearch1:elasticsearch \
  elk_kibana:latest \
  ./run.sh
